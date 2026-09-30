@@ -10,6 +10,7 @@ import com.example.nobsv2.Command;
 import com.example.nobsv2.exceptions.ProductNotFoundException;
 import com.example.nobsv2.product.ProductRepository;
 import com.example.nobsv2.product.model.Product;
+import org.springframework.cache.annotation.CachePut;
 import com.example.nobsv2.product.model.ProductDTO;
 import com.example.nobsv2.product.model.UpdateProductCommand;
 import com.example.nobsv2.product.validators.ProductValidator;
@@ -24,6 +25,7 @@ public class UpdateProductService implements Command<UpdateProductCommand, Produ
 	}
 	
 	@Override
+	@CachePut(value="productCache", key="#p0.id")
 	public ResponseEntity<ProductDTO> execute(UpdateProductCommand command) {
 		
 		Optional<Product> productOptional = productRepository.findById(command.getId());
