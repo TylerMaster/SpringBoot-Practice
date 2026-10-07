@@ -60,12 +60,13 @@ public class SecurityConfiguration {
 		return httpSecurity
 				.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests(authorize -> {
-					authorize.requestMatchers("/login").permitAll();
-					authorize.requestMatchers("/createnewuser").permitAll();
+					authorize.anyRequest().permitAll();
+					//authorize.requestMatchers("/login").permitAll();
+					//authorize.requestMatchers("/createnewuser").permitAll();
 					
 					
 					
-					authorize.anyRequest().authenticated();
+					//authorize.anyRequest().authenticated();
 					/*authorize.requestMatchers("/open").permitAll();
 					authorize.requestMatchers("/closed").authenticated();
 					authorize.requestMatchers(HttpMethod.POST, "/product").authenticated();
